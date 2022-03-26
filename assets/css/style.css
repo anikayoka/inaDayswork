@@ -9,18 +9,19 @@ textarea{
   border: none;
   resize: none;
   color: #000000;
-  border-left: 1px solid grey;
-  border-bottom: 1px solid grey;
-  border-top: 1px dashed black;
-  padding: 10px;
+  border-left: 1px solid indigo;
+  border-bottom: 1px solid indigo;
+  border-top: 1px solid indigo;
+  padding: 15px;
 }
 
 .jumbotron {
   text-align: center;
-  background-color: transparent;
-  color: black;
+  background-color: azure;
+  color: indigo;
   border-radius: 0;
-  border-bottom: 10px solid black;
+  border-bottom: 3px solid indigo;
+  border-top: 3px solid indigo;
 }
 
 .description{
@@ -42,7 +43,7 @@ textarea{
   font-size: 20px;
   width: 2cm;
   background-color: #ffffff;
-  color: #000000;
+  color: indigo;
   border-top: 1px dashed #000000;
 }
 
@@ -67,7 +68,6 @@ textarea{
   border-bottom-right-radius: 15px;
   background-color: #06AED5;
   color: white;
-  /* width: 2.3344cm; */
 }
 
 .saveBtn i:hover {
