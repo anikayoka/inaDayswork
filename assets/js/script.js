@@ -2,30 +2,64 @@
 var todaysDate = moment().format(' dddd MMMM D, YYYY');
 $("#currentDay").html(todaysDate);
 
+var currentTime = moment().format("h a");
 
-//each time block is color coded indicatiing past present or future
-//can enter an event when time block is clicked
-//text is saved in local storage when save button is clicked
-//saved events persist when page is refreshed
+let newHtml = ""
 
 let HTMLCode = ""
-// scroll down & presented with time block for standard business hours
-for(let i=9 ;i<18 ;i++){
-  var storedTasks = localStorage.getItem(i) || ""
-  HTMLCode += `<div class="row m-3 p-3">
-  <h3 class="hour">${i}</h3>
-  <textarea id="${i}" row="2" cols="80" value = ${storedTasks} placeholder=${storedTasks}></textarea>
-  <button class="saveBtn btn btn-success">Save</button>
-</div>`
-}
 
+var timeSlot = ["8 am", "9 am", "10 am", "11 am", "12 pm", "1 pm", "2 pm", "3 pm", "4 pm", "5 pm"]
+
+var className = ["past", "present", "future"]
+
+for (let i = 0; i < 10; i++) {
+  var storedTasks = localStorage.getItem(i) || ""
+
+  HTMLCode += `<div class="row time-block">
+  <h3 class="hour">${timeSlot[i]}</h3>
+  <textarea id="${i}" class="col-md-10 description" value = ${storedTasks} placeholder=${storedTasks}></textarea>
+  <button class="saveBtn btn btn-success col-md-1"><i class="fas fa-save"></i></button></div>`
+
+
+  if (timeSlot[i] < currentTime) {
+    newHtml += `<div class="row time-block">
+    <h3 class="hour">${timeSlot[i]}</h3>
+  <textarea id="${i}" class="col-md-10 description ${className[0]}" value = ${storedTasks} placeholder=${storedTasks}></textarea>
+  <button class="saveBtn btn btn-success col-md-1"><i class="fas fa-save"></i></button></div>`
+
+    console.log(currentTime)
+
+  } else if (timeSlot[i] === currentTime) {
+    newHtml += `<div class="row time-block">
+    <h3 class="hour">${timeSlot[i]}</h3>
+  <textarea id="${i}" class="col-md-10 description ${className[1]}" value = ${storedTasks} placeholder=${storedTasks}></textarea>
+  <button class="saveBtn btn btn-success col-md-1"><i class="fas fa-save"></i></button></div>`
+
+    console.log(currentTime)
+
+  } else {
+    newHtml += `<div class="row time-block">
+    <h3 class="hour">${timeSlot[i]}</h3>
+  <textarea id="${i}" class="col-md-10 description ${className[2]}" value = ${storedTasks} placeholder=${storedTasks}></textarea>
+  <button class="saveBtn btn btn-success col-md-1"><i class="fas fa-save"></i></button></div>`
+  }
+
+  console.log(currentTime)
+
+}
 $("#blocks").html(HTMLCode)
+
+$("#blocks").html(newHtml)
+
 
 // save events for each hour of the day
 
-$(".saveBtn").on("click",function(){
+$(".saveBtn").on("click", function () {
   var task = $(this).siblings("textarea").val()
   var time = $(this).siblings("textarea").attr("id")
-    console.log(`testing, ${task}, ${time}`)
-    localStorage.setItem(time, task)
+  console.log(`testing, ${task}, ${time}`)
+  localStorage.setItem(time, task)
 })
+
+// row="2" cols="100"
+
