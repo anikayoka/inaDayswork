@@ -22,8 +22,8 @@ for (let i = 0; i < 10; i++) {
 
   HTMLCode += `<div class="row time-block">
   <h3 class="hour">${timeSlot[i]}</h3>
-  <textarea id="${i}" class="col-md-10 description" value = ${storedTasks} placeholder=${storedTasks}></textarea>
-  <button class="saveBtn btn btn-success col-md-1"><i class="fas fa-save"></i></button></div>`
+  <textarea id="${i}" class="col-9 description" value = ${storedTasks} placeholder=${storedTasks}></textarea>
+  <button class="saveBtn btn btn-success col-1"><i class="fas fa-save"></i></button></div>`
 
   var dateTime = `${moment().format("YYYY-MM-DD")}T${hoursFormat[i]}`
 
@@ -32,28 +32,25 @@ for (let i = 0; i < 10; i++) {
   var endDateTime = `${moment().format("YYYY-MM-DD")}T${hoursFormat[i + 1]}`
   
 // Present data
-
   if (moment(currentTime).isBetween(dateTime, endDateTime)) {
     newHtml += `<div class="row time-block">
     <h3 class="hour">${timeSlot[i]}</h3>
-  <textarea id="${i}" class="col-md-10 description ${className[1]}" value = ${storedTasks} placeholder=${storedTasks}></textarea>
-  <button class="saveBtn btn btn-success col-md-1"><i class="fas fa-save"></i></button></div>`
+    <textarea id="${i}" class="col-9 description ${className[1]}" value = ${storedTasks} placeholder=${storedTasks}></textarea>
+    <button class="saveBtn btn btn-success col-1"><i class="fas fa-save"></i></button></div>`
 
   //Past data
-
   } else if (dateTrack) {
     newHtml += `<div class="row time-block">
     <h3 class="hour">${timeSlot[i]}</h3>
-  <textarea id="${i}" class="col-md-10 description ${className[0]}" value = ${storedTasks} placeholder=${storedTasks}></textarea>
-  <button class="saveBtn btn btn-success col-md-1"><i class="fas fa-save"></i></button></div>`
-
+    <textarea id="${i}" class="col-9 description ${className[0]}" value = ${storedTasks} placeholder=${storedTasks}></textarea>
+    <button class="saveBtn btn btn-success col-1"><i class="fas fa-save"></i></button></div>`
+  
   //Future data
-
   } else {
     newHtml += `<div class="row time-block">
     <h3 class="hour">${timeSlot[i]}</h3>
-  <textarea id="${i}" class="col-md-10 description ${className[2]}" value = ${storedTasks} placeholder=${storedTasks}></textarea>
-  <button class="saveBtn btn btn-success col-md-1"><i class="fas fa-save"></i></button></div>`
+    <textarea id="${i}" class="col-9 description ${className[2]}" value = ${storedTasks} placeholder=${storedTasks}></textarea>
+    <button class="saveBtn btn btn-success col-1"><i class="fas fa-save"></i></button></div>`
   }
 
 }
@@ -62,12 +59,10 @@ $("#blocks").html(HTMLCode)
 $("#blocks").html(newHtml)
 
 
-// Save data that persist
-
+// Saved data that persist
 $(".saveBtn").on("click", function () {
   var task = $(this).siblings("textarea").val()
   var time = $(this).siblings("textarea").attr("id")
-  console.log(`testing, ${task}, ${time}`)
   localStorage.setItem(time, task)
 })
 
