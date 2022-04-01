@@ -13,7 +13,7 @@ Another challenge out of the way. They don't call them challenges for nothing. T
 I am pleased to have completed the task a hand, I look forward to more of them and to growing and learning in thi coding journey.
 
 ## Website
-* Githun https://anikayoka.github.io/inaDayswork/
+* Github https://anikayoka.github.io/inaDayswork/
 
 * Deployed https://anikayoka.github.io/inaDayswork/
 
